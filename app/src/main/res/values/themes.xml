@@ -52,9 +52,9 @@
     <!-- Base application theme. -->
     <style name="Base.Theme.MaterialThemeBuilder" parent="Theme.MaterialComponents.NoActionBar">
         <item name="android:statusBarColor" tools:ignore="NewApi">@android:color/transparent</item>
-        <item name="android:windowLightStatusBar" tools:ignore="NewApi">true</item>
+        <item name="android:windowLightStatusBar" tools:ignore="NewApi">false</item>
         <item name="android:navigationBarColor" tools:ignore="NewApi">?android:attr/colorBackground</item>
-        <item name="android:windowLightNavigationBar" tools:ignore="NewApi">true</item>
+        <item name="android:windowLightNavigationBar" tools:ignore="NewApi">false</item>
         <item name="android:navigationBarDividerColor" tools:ignore="NewApi">?attr/colorControlHighlight</item>
     </style>
 
