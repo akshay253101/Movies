@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- For 1080*1920 dpi ~480 xxhdpi, all conversions are made on 480dpi-->
+
+    <dimen name="movie_content_horizontal_margin">5dp</dimen> <!-- half of 30px = 10dp-->
+    <dimen name="movie_content_top_margin">6dp</dimen> <!-- half of 36px = 12dp-->
+    <dimen name="movie_content_bottom_margin">15dp</dimen> <!-- half of 90px = 30dp-->
+    <dimen name="movie_title_top_margin">8dp</dimen> <!-- 24px = 8dp-->
+</resources>

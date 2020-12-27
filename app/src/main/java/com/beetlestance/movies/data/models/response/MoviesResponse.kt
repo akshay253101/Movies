@@ -12,16 +12,16 @@ data class MoviesResponse(
 data class Page(
 
     @SerializedName("page-num")
-    val pageNum: String,
+    val pageNum: Int,
 
     @SerializedName("page-size")
-    val pageSize: String,
+    val pageSize: Int,
 
     @SerializedName("content-items")
     val contentItems: ContentItems,
 
     @SerializedName("total-content-items")
-    val totalContentItems: String,
+    val totalContentItems: Int,
 
     @SerializedName("title")
     val title: String

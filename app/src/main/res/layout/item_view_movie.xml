@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="movie"
+            type="com.beetlestance.movies.data.models.entities.Movies" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/root_item_view_movie"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/item_view_movies_margin_top_guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="@dimen/movie_content_top_margin" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/item_view_movies_margin_start_guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="@dimen/movie_content_horizontal_margin" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/item_view_movie_poster_image"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintDimensionRatio="3:5"
+            app:layout_constraintEnd_toEndOf="@id/item_view_movies_margin_end_guideline"
+            app:layout_constraintStart_toStartOf="@id/item_view_movies_margin_start_guideline"
+            app:layout_constraintTop_toTopOf="@id/item_view_movies_margin_top_guideline"
+            tools:background="@color/white_50" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/item_view_movie_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:maxLines="1"
+            android:text="@{movie.name}"
+            android:textAppearance="?textAppearanceBody1"
+            app:layout_constraintBottom_toBottomOf="@id/item_view_movies_margin_bottom_guideline"
+            app:layout_constraintEnd_toEndOf="@id/item_view_movies_margin_end_guideline"
+            app:layout_constraintStart_toStartOf="@id/item_view_movies_margin_start_guideline"
+            app:layout_constraintTop_toBottomOf="@id/item_view_movie_poster_image" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/item_view_movies_margin_end_guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_end="@dimen/movie_content_horizontal_margin" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/item_view_movies_margin_bottom_guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_end="@dimen/movie_content_bottom_margin" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

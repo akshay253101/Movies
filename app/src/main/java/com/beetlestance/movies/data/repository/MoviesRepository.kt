@@ -5,6 +5,7 @@ import com.beetlestance.movies.constants.moviesAssests
 import com.beetlestance.movies.data.datasource.store.MoviesStore
 import com.beetlestance.movies.data.models.entities.Movies
 import com.beetlestance.movies.data.models.response.MoviesResponse
+import com.beetlestance.movies.data.models.response.Page
 import com.beetlestance.movies.di.ApplicationContext
 import com.beetlestance.movies.utils.loadJSONFromAsset
 import com.beetlestance.movies.utils.toDataClass
@@ -17,7 +18,7 @@ class MoviesRepository @Inject constructor(
     private val moviesStore: MoviesStore
 ) {
 
-    suspend fun fetchMovies() {
+    suspend fun fetchMovies(): Page {
         val movies = mutableListOf<Movies>()
 
         val isPreloadRequired = moviesStore.isPreloadRequired()
@@ -30,10 +31,9 @@ class MoviesRepository @Inject constructor(
 
         if (moviesJsonMap.isEmpty()) throw IllegalStateException("No data found")
 
-        val title = moviesJsonMap.first().title
-        val pageSize = moviesJsonMap.first().pageSize
-
         if (movies.isNotEmpty()) moviesStore.saveMovies(movies.toList())
+
+        return moviesJsonMap.first()
     }
 
 }
