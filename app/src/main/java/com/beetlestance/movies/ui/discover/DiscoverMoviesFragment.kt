@@ -76,15 +76,15 @@ class DiscoverMoviesFragment : DaggerFragment(R.layout.fragment_discover_movies)
         }
 
         requireBinding().fragmentDiscoverMoviesOpenSearchView.setOnClickListener {
-            if (viewModel.searchQuery.value.isNullOrBlank()) {
-                requireBinding().rootFragmentDiscoverMovies.transitionToEnd()
-            } else {
-                viewModel.searchQuery.value = ""
-            }
+            requireBinding().rootFragmentDiscoverMovies.transitionToEnd()
         }
 
         requireBinding().fragmentDiscoverMoviesEditLayout.setEndIconOnClickListener {
-            requireBinding().rootFragmentDiscoverMovies.transitionToStart()
+            if (viewModel.searchQuery.value.isNullOrBlank()) {
+                requireBinding().rootFragmentDiscoverMovies.transitionToStart()
+            } else {
+                viewModel.searchQuery.value = ""
+            }
         }
     }
 
