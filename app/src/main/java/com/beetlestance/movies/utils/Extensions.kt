@@ -1,27 +1,45 @@
 package com.beetlestance.movies.utils
 
 import android.content.Context
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.annotation.LayoutRes
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
+import com.beetlestance.movies.constants.PLACEHOLDER_ASSET
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import okio.IOException
+import java.io.FileNotFoundException
 import java.nio.charset.StandardCharsets.UTF_8
 
 fun Context.loadJSONFromAsset(jsonFileName: String): String? {
     return try {
-        assets.open(jsonFileName).let {
-            val buffer = ByteArray(it.available())
-            it.read(buffer)
-            it.close()
+        assets.open(jsonFileName).let { inputStream ->
+            val buffer = ByteArray(inputStream.available())
+            inputStream.read(buffer)
+            inputStream.close()
             String(buffer, UTF_8)
         }
     } catch (e: IOException) {
         null
+    }
+}
+
+fun Context.loadBitmapFromAsset(fileName: String): Bitmap? {
+    return try {
+        assets.open(fileName).let { inputStream ->
+            BitmapFactory.decodeStream(inputStream).also {
+                inputStream.close()
+            }
+        }
+    } catch (e: IOException) {
+        if (e is FileNotFoundException && fileName != PLACEHOLDER_ASSET) {
+            loadBitmapFromAsset(PLACEHOLDER_ASSET)
+        } else null
     }
 }
 

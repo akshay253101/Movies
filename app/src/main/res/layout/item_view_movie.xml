@@ -31,6 +31,7 @@
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/item_view_movie_poster_image"
+            loadAsset="@{movie.posterImage}"
             android:layout_width="0dp"
             android:layout_height="0dp"
             app:layout_constraintDimensionRatio="3:5"

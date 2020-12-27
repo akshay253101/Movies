@@ -5,3 +5,5 @@ fun moviesAssests(): List<String> = listOf(
     "CONTENTLISTINGPAGE-PAGE2.json",
     "CONTENTLISTINGPAGE-PAGE3.json"
 )
+
+const val PLACEHOLDER_ASSET = "placeholder.png"
