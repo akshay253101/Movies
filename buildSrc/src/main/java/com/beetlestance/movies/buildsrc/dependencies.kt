@@ -67,13 +67,13 @@ object Libs {
         const val gson: String = "com.google.code.gson:gson:2.8.6"
 
         object PlayServices {
-            const val gmsGoogleServices: String = "com.google.gms:google-services:4.3.3"
+            const val gmsGoogleServices: String = "com.google.gms:google-services:4.3.4"
         }
 
         object Firebase {
-            const val crashlytics: String = "com.google.firebase:firebase-crashlytics:17.2.1"
+            const val crashlytics: String = "com.google.firebase:firebase-crashlytics:17.3.0"
             const val crashlyticsGradle: String =
-                "com.google.firebase:firebase-crashlytics-gradle:2.2.0"
+                "com.google.firebase:firebase-crashlytics-gradle:2.4.1"
         }
     }
 

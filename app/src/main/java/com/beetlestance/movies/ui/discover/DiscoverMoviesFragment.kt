@@ -98,7 +98,7 @@ class DiscoverMoviesFragment : DaggerFragment(R.layout.fragment_discover_movies)
 
         requireBinding().fragmentDiscoverMoviesEditLayout.setEndIconOnClickListener {
             if (viewModel.searchQuery.value.isNullOrBlank()) {
-                showAlertInfo(false)
+                requireBinding().fragmentDiscoverMoviesQueryAlert.isVisible = false
                 requireBinding().rootFragmentDiscoverMovies.transitionToStart()
             } else {
                 viewModel.searchQuery.value = ""

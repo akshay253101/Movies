@@ -3,6 +3,8 @@ import com.beetlestance.movies.buildsrc.Movies
 
 plugins {
     id("com.android.application")
+    id("com.google.firebase.crashlytics")
+    id("com.google.gms.google-services")
     kotlin("android")
     kotlin("kapt")
 }
@@ -44,6 +46,15 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+        }
+        getByName("debug") {
+            isMinifyEnabled = false
+            isShrinkResources = false
+            firebaseCrashlytics {
+                // If you don't need crash reporting for your debug build,
+                // you can speed up your build by disabling mapping file uploading.
+                mappingFileUploadEnabled = false
+            }
         }
     }
 
@@ -109,4 +120,7 @@ dependencies {
 
     // Coil
     implementation(Libs.Coil.coil)
+
+    // Crashlytics
+    implementation(Libs.Google.Firebase.crashlytics)
 }

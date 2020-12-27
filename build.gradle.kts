@@ -10,7 +10,8 @@ buildscript {
     dependencies {
         classpath(com.beetlestance.movies.buildsrc.Libs.androidGradlePlugin)
         classpath(com.beetlestance.movies.buildsrc.Libs.Kotlin.gradlePlugin)
-
+        classpath(com.beetlestance.movies.buildsrc.Libs.Google.PlayServices.gmsGoogleServices)
+        classpath(com.beetlestance.movies.buildsrc.Libs.Google.Firebase.crashlyticsGradle)
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle.kts files
     }
