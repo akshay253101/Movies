@@ -1,5 +1,6 @@
 package com.beetlestance.movies.data.models.response
 
+import com.beetlestance.movies.data.models.entities.Movies
 import com.google.gson.annotations.SerializedName
 
 data class MoviesResponse(
@@ -30,7 +31,11 @@ data class ContentItems(
 
     @SerializedName("content")
     val content: List<ContentItem>
-)
+) {
+    fun toMovies() = content.map { contentItem ->
+        Movies(name = contentItem.name, posterImage = contentItem.posterImage)
+    }
+}
 
 data class ContentItem(
 
