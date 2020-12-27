@@ -76,8 +76,11 @@ class DiscoverMoviesFragment : DaggerFragment(R.layout.fragment_discover_movies)
         }
 
         requireBinding().fragmentDiscoverMoviesOpenSearchView.setOnClickListener {
-            viewModel.searchQuery.postValue("")
-            requireBinding().rootFragmentDiscoverMovies.transitionToEnd()
+            if (viewModel.searchQuery.value.isNullOrBlank()) {
+                requireBinding().rootFragmentDiscoverMovies.transitionToEnd()
+            } else {
+                viewModel.searchQuery.value = ""
+            }
         }
 
         requireBinding().fragmentDiscoverMoviesEditLayout.setEndIconOnClickListener {
