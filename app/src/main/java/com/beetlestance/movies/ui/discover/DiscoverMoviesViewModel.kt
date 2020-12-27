@@ -25,7 +25,8 @@ class DiscoverMoviesViewModel @Inject constructor(
 
     val searchQuery: MutableLiveData<String> = MutableLiveData()
 
-    val movies: Flow<PagingData<Movies>> = observeMovies.observe()
+    val movies: Flow<PagingData<Movies>>
+        get() = observeMovies.observe()
 
     init {
         viewModelScope.launch {
@@ -37,7 +38,9 @@ class DiscoverMoviesViewModel @Inject constructor(
     }
 
     fun executeQuery() {
-        observeMovies(ObserveMovies.Params(PAGING_CONFIG, searchQuery.value ?: ""))
+        val query = searchQuery.value ?: ""
+        val roomQuery = "%${if (query.length > 3) query else ""}%"
+        observeMovies(ObserveMovies.Params(PAGING_CONFIG, roomQuery))
     }
 
     companion object {

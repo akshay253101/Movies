@@ -20,7 +20,7 @@ fun setImeActions(view: AppCompatEditText, imeAction: () -> Unit) {
     view.imeOptions = EditorInfo.IME_ACTION_SEARCH
     view.setOnEditorActionListener { v, _, _ ->
         val hasValidInput = v.text.length > 3
-        if (hasValidInput) imeAction()
-        true
+        imeAction()
+        hasValidInput
     }
 }

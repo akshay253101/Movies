@@ -13,7 +13,7 @@ import com.beetlestance.movies.di.viewmodelfactory.ViewModelFactory
 import com.beetlestance.movies.ui.discover.adapter.MoviesAdapter
 import com.beetlestance.movies.utils.bindWithLifecycleOwner
 import dagger.android.support.DaggerFragment
-import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.collectLatest
 import javax.inject.Inject
 
 class DiscoverMoviesFragment : DaggerFragment(R.layout.fragment_discover_movies) {
@@ -53,14 +53,12 @@ class DiscoverMoviesFragment : DaggerFragment(R.layout.fragment_discover_movies)
 
     private fun setDataObserver() {
         lifecycleScope.launchWhenCreated {
-            viewModel.movies.collect {
+            viewModel.movies.collectLatest {
                 moviesAdapter?.submitData(it)
             }
         }
 
-        viewModel.searchQuery.observe(viewLifecycleOwner) {
-            if (it.length > 3) viewModel.executeQuery()
-        }
+        viewModel.searchQuery.observe(viewLifecycleOwner) { viewModel.executeQuery() }
     }
 
     private fun setViewListeners() {
@@ -78,6 +76,7 @@ class DiscoverMoviesFragment : DaggerFragment(R.layout.fragment_discover_movies)
         }
 
         requireBinding().fragmentDiscoverMoviesOpenSearchView.setOnClickListener {
+            viewModel.searchQuery.postValue("")
             requireBinding().rootFragmentDiscoverMovies.transitionToEnd()
         }
 

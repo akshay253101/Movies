@@ -24,13 +24,13 @@ class ObserveMovies @Inject constructor(
                     if (shouldFetch) moviesRepository.fetchMovies()
                 }
             },
-            pagingSourceFactory = { moviesRepository.moviesPageSource("%${params.query}%") }
+            pagingSourceFactory = { moviesRepository.moviesPageSource(params.query) }
         ).flow
     }
 
     data class Params(
         override val pagingConfig: PagingConfig,
-        val query: String = ""
+        val query: String = "%%"
     ) : Parameters<Movies>
 
     companion object {

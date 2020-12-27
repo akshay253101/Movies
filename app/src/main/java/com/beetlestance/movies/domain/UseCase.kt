@@ -3,15 +3,14 @@ package com.beetlestance.movies.domain
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import kotlinx.coroutines.channels.BufferOverflow
-import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.flatMapLatest
+import kotlinx.coroutines.flow.flow
 
 abstract class ResultUseCase<in P, out R> {
     operator fun invoke(params: P): Flow<R> {
-        return flow {
-            emit(doWork(params))
-        }.catch { throwable ->
-            // report to crashlytics
-        }
+        return flow { emit(doWork(params)) }
     }
 
     protected abstract suspend fun doWork(params: P): R
@@ -30,11 +29,7 @@ abstract class ObserveUseCase<P : Any, T> {
 
     protected abstract fun createObservable(params: P): Flow<T>
 
-    fun observe(): Flow<T> = paramState.flatMapLatest {
-        createObservable(it).catch { throwable ->
-            // report to crashlytics
-        }
-    }
+    fun observe(): Flow<T> = paramState.flatMapLatest { createObservable(it) }
 }
 
 abstract class PagingUseCase<P : PagingUseCase.Parameters<T>, T : Any> :
