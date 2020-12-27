@@ -70,10 +70,13 @@ class DiscoverMoviesFragment : DaggerFragment(R.layout.fragment_discover_movies)
 
     private fun showAlertInfo(newState: Boolean) {
         binding?.apply {
-            val currentState = fragmentDiscoverMoviesQueryAlert.isVisible
-            if (newState != currentState) {
-                TransitionManager.beginDelayedTransition(rootFragmentDiscoverMovies)
-                fragmentDiscoverMoviesQueryAlert.isVisible = newState
+            rootFragmentDiscoverMovies.post {
+                val currentState = fragmentDiscoverMoviesQueryAlert.isVisible
+                val isSearchViewVisible = rootFragmentDiscoverMovies.progress > 0f
+                if (newState != currentState && isSearchViewVisible) {
+                    TransitionManager.beginDelayedTransition(rootFragmentDiscoverMovies)
+                    fragmentDiscoverMoviesQueryAlert.isVisible = newState
+                }
             }
         }
     }
@@ -97,6 +100,7 @@ class DiscoverMoviesFragment : DaggerFragment(R.layout.fragment_discover_movies)
             requireBinding().fragmentDiscoverMoviesQueryAlert.isVisible = false
             requireBinding().fragmentDiscoverMoviesEditText.requestFocus()
             requireActivity().showSoftInput(requireBinding().fragmentDiscoverMoviesEditText)
+            showAlertInfo(viewModel.searchQuery.value?.length ?: 4 < 3)
             requireBinding().rootFragmentDiscoverMovies.transitionToEnd()
         }
 
