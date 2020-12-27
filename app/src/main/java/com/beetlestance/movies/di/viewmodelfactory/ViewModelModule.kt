@@ -11,11 +11,6 @@ import dagger.Module
 @Module
 internal abstract class ViewModelModule {
 
-    /**
-     * Generate binding method for ViewModelProvider.Factory
-     *
-     * Change the return type for using different ViewModelFactory
-     */
     @Binds
     internal abstract fun bindViewModelFactory(factory: ViewModelFactory): ViewModelProvider.Factory
 }

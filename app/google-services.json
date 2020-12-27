@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "830267676007",
+    "project_id": "movies-cfd95",
+    "storage_bucket": "movies-cfd95.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:830267676007:android:5d343fb0e37ecfc9bb8bc2",
+        "android_client_info": {
+          "package_name": "com.beetlestance.movies"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "830267676007-nnu87h5qfe0176u7kqa969mnp3h9h8bm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAoP_kyXZF1uP9iq-yuyRt1YERUWZsGTP8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "830267676007-nnu87h5qfe0176u7kqa969mnp3h9h8bm.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -76,7 +76,7 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/fragment_discover_movies_toolbar_edit_text"
+                android:id="@+id/fragment_discover_movies_edit_text"
                 imeAction="@{()->discoverMoviesViewModel.executeQuery()}"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

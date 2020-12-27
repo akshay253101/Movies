@@ -1,11 +1,15 @@
 package com.beetlestance.movies.utils
 
+import android.app.Activity
 import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
 import androidx.annotation.LayoutRes
+import androidx.core.content.getSystemService
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
@@ -70,4 +74,20 @@ inline fun <T : ViewDataBinding> bindWithLayout(
     val binding: T = DataBindingUtil.inflate(inflater, layoutId, parent, attachToRoot)
     binding.bind()
     return binding
+}
+
+fun Activity.hideSoftInput() {
+    val imm: InputMethodManager? = getSystemService()
+    val currentFocus = currentFocus
+    if (currentFocus != null && imm != null) {
+        imm.hideSoftInputFromWindow(currentFocus.windowToken, 0)
+    }
+}
+
+fun Activity.showSoftInput(view: View) {
+    val imm: InputMethodManager? = getSystemService()
+    val currentFocus = currentFocus
+    if (currentFocus != null && imm != null) {
+        imm.showSoftInput(view, 0)
+    }
 }

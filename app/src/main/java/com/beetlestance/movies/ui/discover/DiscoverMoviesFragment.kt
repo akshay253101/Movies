@@ -14,6 +14,8 @@ import com.beetlestance.movies.databinding.FragmentDiscoverMoviesBinding
 import com.beetlestance.movies.di.viewmodelfactory.ViewModelFactory
 import com.beetlestance.movies.ui.discover.adapter.MoviesAdapter
 import com.beetlestance.movies.utils.bindWithLifecycleOwner
+import com.beetlestance.movies.utils.hideSoftInput
+import com.beetlestance.movies.utils.showSoftInput
 import dagger.android.support.DaggerFragment
 import kotlinx.coroutines.flow.collectLatest
 import javax.inject.Inject
@@ -93,11 +95,14 @@ class DiscoverMoviesFragment : DaggerFragment(R.layout.fragment_discover_movies)
 
         requireBinding().fragmentDiscoverMoviesOpenSearchView.setOnClickListener {
             requireBinding().fragmentDiscoverMoviesQueryAlert.isVisible = false
+            requireBinding().fragmentDiscoverMoviesEditText.requestFocus()
+            requireActivity().showSoftInput(requireBinding().fragmentDiscoverMoviesEditText)
             requireBinding().rootFragmentDiscoverMovies.transitionToEnd()
         }
 
         requireBinding().fragmentDiscoverMoviesEditLayout.setEndIconOnClickListener {
             if (viewModel.searchQuery.value.isNullOrBlank()) {
+                requireActivity().hideSoftInput()
                 requireBinding().fragmentDiscoverMoviesQueryAlert.isVisible = false
                 requireBinding().rootFragmentDiscoverMovies.transitionToStart()
             } else {
