@@ -17,7 +17,7 @@
         app:layoutDescription="@xml/search_movie_motion_scene">
 
         <View
-            android:id="@+id/fragment_discover_movies_toolbar"
+            android:id="@+id/fragment_discover_movies_toolbar_background"
             android:layout_width="match_parent"
             android:layout_height="?actionBarSize"
             android:background="@drawable/drawable_app_bar"
@@ -28,7 +28,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            app:layout_constraintBottom_toBottomOf="@id/fragment_discover_movies_toolbar"
+            app:layout_constraintBottom_toBottomOf="@id/fragment_discover_movies_toolbar_background"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/ic_back" />
@@ -41,10 +41,10 @@
             android:gravity="center_vertical"
             android:text="@{discoverMoviesViewModel.pageConfig.title}"
             android:textAppearance="?textAppearanceHeadline6"
-            app:layout_constraintBottom_toBottomOf="@id/fragment_discover_movies_toolbar"
+            app:layout_constraintBottom_toBottomOf="@id/fragment_discover_movies_toolbar_background"
             app:layout_constraintEnd_toStartOf="@id/fragment_discover_movies_open_search_view"
             app:layout_constraintStart_toEndOf="@id/fragment_discover_movies_navigation_icon"
-            app:layout_constraintTop_toTopOf="@id/fragment_discover_movies_toolbar" />
+            app:layout_constraintTop_toTopOf="@id/fragment_discover_movies_toolbar_background" />
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/fragment_discover_movies_open_search_view"
@@ -53,7 +53,7 @@
             android:layout_height="0dp"
             android:layout_marginEnd="16dp"
             android:padding="16dp"
-            app:layout_constraintBottom_toBottomOf="@id/fragment_discover_movies_toolbar"
+            app:layout_constraintBottom_toBottomOf="@id/fragment_discover_movies_toolbar_background"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/ic_search" />
@@ -67,6 +67,7 @@
             android:layout_marginEnd="16dp"
             android:paddingBottom="16dp"
             app:boxBackgroundColor="@color/white_50"
+            app:boxStrokeColor="@color/white_50"
             app:endIconDrawable="@drawable/ic_search_dismiss"
             app:endIconMode="custom"
             app:endIconTint="@color/black"
@@ -80,7 +81,7 @@
                 imeAction="@{()->discoverMoviesViewModel.executeQuery()}"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/search_here"
+                android:hint="@string/movies_search_hint"
                 android:importantForAutofill="no"
                 android:inputType="text"
                 android:longClickable="false"
@@ -90,12 +91,39 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/fragment_discover_movies_query_alert"
+            android:layout_width="0dp"
+            android:layout_height="?actionBarSize"
+            android:layout_marginStart="16dp"
+            android:drawableStart="@drawable/ic_info_24"
+            android:gravity="center_vertical"
+            android:text="@string/movies_search_info"
+            android:textAppearance="?textAppearanceHeadline6"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@id/fragment_discover_movies_toolbar_background"
+            app:layout_constraintEnd_toStartOf="@id/fragment_discover_movies_open_search_view"
+            app:layout_constraintStart_toEndOf="@id/fragment_discover_movies_navigation_icon"
+            app:layout_constraintTop_toTopOf="@id/fragment_discover_movies_toolbar_background" />
+
+        <androidx.constraintlayout.widget.Group
+            android:id="@+id/fragment_discover_movies_toolbar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:elevation="4dp"
+            app:constraint_referenced_ids="fragment_discover_movies_toolbar_background,
+            fragment_discover_movies_navigation_icon,
+            fragment_discover_movies_title,fragment_discover_movies_title,
+            fragment_discover_movies_open_search_view,
+            fragment_discover_movies_edit_layout" />
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/fragment_discover_movies_recycler_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginHorizontal="@dimen/movie_content_horizontal_margin"
-            android:layout_marginTop="@dimen/movie_recycler_view_top_margin"
+            android:clipToPadding="false"
+            android:paddingTop="@dimen/movie_recycler_view_top_margin"
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
             tools:itemCount="14"
             tools:listitem="@layout/item_view_movie"

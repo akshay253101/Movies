@@ -34,19 +34,18 @@ class DiscoverMoviesViewModel @Inject constructor(
                 _pageConfig.postValue(config)
             }
         }
-        observeMovies(ObserveMovies.Params(PAGING_CONFIG))
+        observeMovies(ObserveMovies.Params(pageConfig()))
     }
 
     fun executeQuery() {
         val query = searchQuery.value ?: ""
         val roomQuery = "%${if (query.length > 3) query else ""}%"
-        observeMovies(ObserveMovies.Params(PAGING_CONFIG, roomQuery))
+        observeMovies(ObserveMovies.Params(pageConfig(), roomQuery))
     }
 
-    companion object {
-        val PAGING_CONFIG = PagingConfig(
-            pageSize = 20,
-            initialLoadSize = 20
-        )
+    private fun pageConfig(): PagingConfig {
+        val pageSize = pageConfig.value?.pageSize ?: 20
+        return PagingConfig(pageSize = pageSize, initialLoadSize = pageSize)
     }
+
 }
