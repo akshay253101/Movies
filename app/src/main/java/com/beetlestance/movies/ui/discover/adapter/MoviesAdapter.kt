@@ -26,8 +26,12 @@ class MoviesAdapter : PagingDataAdapter<Movies, MoviesAdapter.MoviesViewHolder>(
 
     object DiffCallBack : DiffUtil.ItemCallback<Movies>() {
 
-        override fun areItemsTheSame(oldItem: Movies, newItem: Movies) = oldItem.id == newItem.id
+        override fun areItemsTheSame(oldItem: Movies, newItem: Movies): Boolean {
+            return oldItem.id == newItem.id
+        }
 
-        override fun areContentsTheSame(oldItem: Movies, newItem: Movies) = oldItem == newItem
+        override fun areContentsTheSame(oldItem: Movies, newItem: Movies): Boolean {
+            return oldItem == newItem
+        }
     }
 }

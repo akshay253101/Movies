@@ -65,7 +65,6 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
-            android:paddingBottom="16dp"
             app:boxBackgroundColor="@color/white_50"
             app:boxStrokeColor="@color/white_50"
             app:endIconDrawable="@drawable/ic_search_dismiss"
@@ -94,17 +93,19 @@
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/fragment_discover_movies_query_alert"
             android:layout_width="0dp"
-            android:layout_height="?actionBarSize"
-            android:layout_marginStart="16dp"
+            android:layout_height="wrap_content"
+            android:background="@color/black_900"
             android:drawableStart="@drawable/ic_info_24"
+            android:drawablePadding="16dp"
+            android:elevation="4dp"
             android:gravity="center_vertical"
+            android:padding="16dp"
             android:text="@string/movies_search_info"
-            android:textAppearance="?textAppearanceHeadline6"
+            android:textAppearance="?textAppearanceSubtitle2"
             android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="@id/fragment_discover_movies_toolbar_background"
-            app:layout_constraintEnd_toStartOf="@id/fragment_discover_movies_open_search_view"
-            app:layout_constraintStart_toEndOf="@id/fragment_discover_movies_navigation_icon"
-            app:layout_constraintTop_toTopOf="@id/fragment_discover_movies_toolbar_background" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/fragment_discover_movies_edit_layout" />
 
         <androidx.constraintlayout.widget.Group
             android:id="@+id/fragment_discover_movies_toolbar"

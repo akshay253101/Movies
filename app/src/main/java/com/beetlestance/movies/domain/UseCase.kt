@@ -23,7 +23,10 @@ abstract class ObserveUseCase<P : Any, T> {
         onBufferOverflow = BufferOverflow.DROP_OLDEST
     )
 
+    var currentParam: P? = null
+
     operator fun invoke(params: P) {
+        currentParam = params
         paramState.tryEmit(params)
     }
 

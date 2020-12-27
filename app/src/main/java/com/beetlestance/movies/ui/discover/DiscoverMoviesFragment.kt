@@ -4,9 +4,11 @@ import android.content.res.Configuration
 import android.os.Bundle
 import android.view.View
 import androidx.activity.addCallback
+import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.transition.TransitionManager
 import com.beetlestance.movies.R
 import com.beetlestance.movies.databinding.FragmentDiscoverMoviesBinding
 import com.beetlestance.movies.di.viewmodelfactory.ViewModelFactory
@@ -58,12 +60,26 @@ class DiscoverMoviesFragment : DaggerFragment(R.layout.fragment_discover_movies)
             }
         }
 
-        viewModel.searchQuery.observe(viewLifecycleOwner) { viewModel.executeQuery() }
+        viewModel.searchQuery.observe(viewLifecycleOwner) {
+            showAlertInfo(it.length < 3)
+            viewModel.executeQuery()
+        }
+    }
+
+    private fun showAlertInfo(newState: Boolean) {
+        binding?.apply {
+            val currentState = fragmentDiscoverMoviesQueryAlert.isVisible
+            if (newState != currentState) {
+                TransitionManager.beginDelayedTransition(rootFragmentDiscoverMovies)
+                fragmentDiscoverMoviesQueryAlert.isVisible = newState
+            }
+        }
     }
 
     private fun setViewListeners() {
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner) {
             if (requireBinding().rootFragmentDiscoverMovies.progress != 0f) {
+                requireBinding().fragmentDiscoverMoviesQueryAlert.isVisible = false
                 requireBinding().rootFragmentDiscoverMovies.transitionToStart()
             } else {
                 isEnabled = false
@@ -76,11 +92,13 @@ class DiscoverMoviesFragment : DaggerFragment(R.layout.fragment_discover_movies)
         }
 
         requireBinding().fragmentDiscoverMoviesOpenSearchView.setOnClickListener {
+            requireBinding().fragmentDiscoverMoviesQueryAlert.isVisible = false
             requireBinding().rootFragmentDiscoverMovies.transitionToEnd()
         }
 
         requireBinding().fragmentDiscoverMoviesEditLayout.setEndIconOnClickListener {
             if (viewModel.searchQuery.value.isNullOrBlank()) {
+                showAlertInfo(false)
                 requireBinding().rootFragmentDiscoverMovies.transitionToStart()
             } else {
                 viewModel.searchQuery.value = ""

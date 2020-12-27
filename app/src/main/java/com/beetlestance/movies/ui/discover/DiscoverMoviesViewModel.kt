@@ -39,8 +39,10 @@ class DiscoverMoviesViewModel @Inject constructor(
 
     fun executeQuery() {
         val query = searchQuery.value ?: ""
-        val roomQuery = "%${if (query.length > 3) query else ""}%"
-        observeMovies(ObserveMovies.Params(pageConfig(), roomQuery))
+        val roomQuery = "%${if (query.length >= 3) query else ""}%"
+        if (observeMovies.currentParam?.query != roomQuery) {
+            observeMovies(ObserveMovies.Params(pageConfig(), roomQuery))
+        }
     }
 
     private fun pageConfig(): PagingConfig {
