@@ -23,6 +23,17 @@ android {
         versionName = Movies.versionName
 
         testInstrumentationRunner("androidx.test.runner.AndroidJUnitRunner")
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments(
+                    mapOf(
+                        "room.schemaLocation" to "$projectDir/schemas",
+                        "room.incremental" to "true"
+                    )
+                )
+            }
+        }
     }
 
     buildTypes {
@@ -88,6 +99,12 @@ dependencies {
     kapt(Libs.Dagger.compiler)
     kapt(Libs.Dagger.processor)
     implementation(Libs.Dagger.support)
+
+    // Room
+    implementation(Libs.AndroidX.Room.common)
+    implementation(Libs.AndroidX.Room.runtime)
+    implementation(Libs.AndroidX.Room.ktx)
+    kapt(Libs.AndroidX.Room.compiler)
 
     // Coil
     implementation(Libs.Coil.coil)

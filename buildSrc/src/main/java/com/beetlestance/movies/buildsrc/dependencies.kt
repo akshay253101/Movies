@@ -46,6 +46,19 @@ object Libs {
             const val fragmentKtx: String = "androidx.navigation:navigation-fragment-ktx:$version"
             const val uiKtx: String = "androidx.navigation:navigation-ui-ktx:$version"
         }
+
+        object Room {
+            private const val version = "2.2.6"
+            const val common: String = "androidx.room:room-common:$version"
+            const val runtime: String = "androidx.room:room-runtime:$version"
+            const val compiler: String = "androidx.room:room-compiler:$version"
+
+            // optional - Kotlin Extensions and Coroutines support for Room
+            const val ktx: String = "androidx.room:room-ktx:$version"
+
+            // optional - Test helpers
+            const val testing: String = "androidx.room:room-testing:$version"
+        }
     }
 
     object Google {

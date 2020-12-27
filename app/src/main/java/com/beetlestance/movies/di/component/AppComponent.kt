@@ -1,6 +1,8 @@
 package com.beetlestance.movies.di.component
 
 import com.beetlestance.movies.MoviesApplication
+import com.beetlestance.movies.data.datasource.AppDatabaseModule
+import com.beetlestance.movies.data.datasource.DatabaseDaoModule
 import com.beetlestance.movies.di.modules.ActivityModule
 import com.beetlestance.movies.di.modules.ApplicationModule
 import dagger.Component
@@ -17,7 +19,9 @@ import javax.inject.Singleton
     modules = [
         AndroidInjectionModule::class,
         ActivityModule::class,
-        ApplicationModule::class
+        ApplicationModule::class,
+        AppDatabaseModule::class,
+        DatabaseDaoModule::class
     ]
 )
 interface AppComponent : AndroidInjector<MoviesApplication> {
