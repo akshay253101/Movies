@@ -77,7 +77,7 @@
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/fragment_discover_movies_toolbar_edit_text"
-                imeAction="@{()->discoverMoviesViewModel.onImeActionTriggered()}"
+                imeAction="@{()->discoverMoviesViewModel.executeQuery()}"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/search_here"

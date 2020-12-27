@@ -57,6 +57,10 @@ class DiscoverMoviesFragment : DaggerFragment(R.layout.fragment_discover_movies)
                 moviesAdapter?.submitData(it)
             }
         }
+
+        viewModel.searchQuery.observe(viewLifecycleOwner) {
+            if (it.length > 3) viewModel.executeQuery()
+        }
     }
 
     private fun setViewListeners() {

@@ -13,8 +13,8 @@ abstract class MoviesDao {
     @Insert
     abstract suspend fun insertAll(entities: List<Movies>)
 
-    @Query(value = ALL_MOVIES_QUERY)
-    abstract fun pagingSource(): PagingSource<Int, Movies>
+    @Query(value = "SELECT * FROM ${AppTables.MOVIES_TABLE} WHERE name LIKE :query")
+    abstract fun pagingSource(query: String): PagingSource<Int, Movies>
 
     @Query(value = ALL_MOVIES_QUERY)
     abstract suspend fun allMovies(): List<Movies>
