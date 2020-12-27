@@ -1,5 +1,7 @@
 package com.beetlestance.movies.domain
 
+import androidx.paging.PagingConfig
+import androidx.paging.PagingData
 import kotlinx.coroutines.channels.BufferOverflow
 import kotlinx.coroutines.flow.*
 
@@ -17,6 +19,7 @@ abstract class ResultUseCase<in P, out R> {
 
 abstract class ObserveUseCase<P : Any, T> {
     private val paramState = MutableSharedFlow<P>(
+        replay = 1,
         extraBufferCapacity = 1,
         onBufferOverflow = BufferOverflow.DROP_OLDEST
     )
@@ -31,6 +34,14 @@ abstract class ObserveUseCase<P : Any, T> {
         createObservable(it).catch { throwable ->
             // report to crashlytics
         }
+    }
+}
+
+abstract class PagingUseCase<P : PagingUseCase.Parameters<T>, T : Any> :
+    ObserveUseCase<P, PagingData<T>>() {
+
+    interface Parameters<T : Any> {
+        val pagingConfig: PagingConfig
     }
 }
 

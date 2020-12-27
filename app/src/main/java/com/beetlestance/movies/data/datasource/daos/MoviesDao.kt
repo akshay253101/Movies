@@ -1,5 +1,6 @@
 package com.beetlestance.movies.data.datasource.daos
 
+import androidx.paging.PagingSource
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
@@ -11,6 +12,9 @@ abstract class MoviesDao {
 
     @Insert
     abstract suspend fun insertAll(entities: List<Movies>)
+
+    @Query(value = ALL_MOVIES_QUERY)
+    abstract fun pagingSource(): PagingSource<Int, Movies>
 
     @Query(value = ALL_MOVIES_QUERY)
     abstract suspend fun allMovies(): List<Movies>

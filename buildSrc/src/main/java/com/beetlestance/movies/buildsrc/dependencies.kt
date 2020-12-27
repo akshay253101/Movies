@@ -22,6 +22,7 @@ object Libs {
     object AndroidX {
         const val appcompat: String = "androidx.appcompat:appcompat:1.3.0-alpha02"
         const val coreKtx: String = "androidx.core:core-ktx:1.5.0-alpha05"
+        const val paging = "androidx.paging:paging-runtime-ktx:3.0.0-alpha11"
 
         object Test {
             private const val version = "1.3.0"
@@ -48,7 +49,7 @@ object Libs {
         }
 
         object Room {
-            private const val version = "2.2.6"
+            private const val version = "2.3.0-alpha04"
             const val common: String = "androidx.room:room-common:$version"
             const val runtime: String = "androidx.room:room-runtime:$version"
             const val compiler: String = "androidx.room:room-compiler:$version"

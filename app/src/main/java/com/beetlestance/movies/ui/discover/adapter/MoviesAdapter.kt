@@ -1,19 +1,15 @@
 package com.beetlestance.movies.ui.discover.adapter
 
 import android.view.ViewGroup
+import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.beetlestance.movies.R
 import com.beetlestance.movies.data.models.entities.Movies
 import com.beetlestance.movies.databinding.ItemViewMovieBinding
 import com.beetlestance.movies.utils.bindWithLayout
 
-class MoviesAdapter : ListAdapter<Movies, MoviesAdapter.MoviesViewHolder>(DiffCallBack) {
-
-    init {
-        setHasStableIds(true)
-    }
+class MoviesAdapter : PagingDataAdapter<Movies, MoviesAdapter.MoviesViewHolder>(DiffCallBack) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MoviesViewHolder {
         return MoviesViewHolder(bindWithLayout(R.layout.item_view_movie, parent))
@@ -25,8 +21,6 @@ class MoviesAdapter : ListAdapter<Movies, MoviesAdapter.MoviesViewHolder>(DiffCa
             executePendingBindings()
         }
     }
-
-    override fun getItemId(position: Int) = getItem(position).id
 
     inner class MoviesViewHolder(val binding: ItemViewMovieBinding) : ViewHolder(binding.root)
 

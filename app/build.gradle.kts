@@ -73,6 +73,7 @@ dependencies {
     // AndroidX
     implementation(Libs.AndroidX.appcompat)
     implementation(Libs.AndroidX.coreKtx)
+    implementation(Libs.AndroidX.paging)
 
     // Kotlin
     implementation(Libs.Kotlin.stdlib)

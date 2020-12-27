@@ -36,4 +36,6 @@ class MoviesRepository @Inject constructor(
         return moviesJsonMap.first()
     }
 
+    fun moviesPageSource() = moviesStore.moviesPageSource()
+
 }

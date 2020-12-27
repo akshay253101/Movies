@@ -5,11 +5,8 @@ import androidx.databinding.BindingAdapter
 import coil.load
 
 @BindingAdapter("loadAsset")
-fun loadAsset(
-    imageView: AppCompatImageView,
-    assetName: String
-) {
-    val bitmap = imageView.context.loadBitmapFromAsset(assetName)
+fun loadAsset(imageView: AppCompatImageView, assetName: String?) {
+    val bitmap = imageView.context.loadBitmapFromAsset(assetName ?: return)
     imageView.load(bitmap = bitmap) {
         crossfade(true)
     }

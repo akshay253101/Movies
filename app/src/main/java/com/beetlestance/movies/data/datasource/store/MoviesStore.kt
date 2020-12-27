@@ -14,4 +14,6 @@ class MoviesStore @Inject constructor(
 
     suspend fun saveMovies(movies: List<Movies>) = moviesDao.insertAll(movies)
 
+    fun moviesPageSource() = moviesDao.pagingSource()
+
 }

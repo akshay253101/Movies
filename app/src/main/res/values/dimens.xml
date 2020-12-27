@@ -6,4 +6,7 @@
     <dimen name="movie_content_top_margin">6dp</dimen> <!-- half of 36px = 12dp-->
     <dimen name="movie_content_bottom_margin">15dp</dimen> <!-- half of 90px = 30dp-->
     <dimen name="movie_title_top_margin">8dp</dimen> <!-- 24px = 8dp-->
+
+    <!-- 56dp toolbar size plus top margin-->
+    <dimen name="movie_recycler_view_top_margin">64dp</dimen>
 </resources>
