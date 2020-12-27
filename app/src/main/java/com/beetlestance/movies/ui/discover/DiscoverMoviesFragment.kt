@@ -3,9 +3,9 @@ package com.beetlestance.movies.ui.discover
 import android.content.res.Configuration
 import android.os.Bundle
 import android.view.View
+import androidx.activity.addCallback
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.beetlestance.movies.R
 import com.beetlestance.movies.databinding.FragmentDiscoverMoviesBinding
@@ -60,8 +60,25 @@ class DiscoverMoviesFragment : DaggerFragment(R.layout.fragment_discover_movies)
     }
 
     private fun setViewListeners() {
-        requireBinding().fragmentDiscoverMoviesToolbar.setNavigationOnClickListener {
-            findNavController().navigateUp()
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner) {
+            if (requireBinding().rootFragmentDiscoverMovies.progress != 0f) {
+                requireBinding().rootFragmentDiscoverMovies.transitionToStart()
+            } else {
+                isEnabled = false
+                requireActivity().onBackPressed()
+            }
+        }
+
+        requireBinding().fragmentDiscoverMoviesNavigationIcon.setOnClickListener {
+            requireActivity().onBackPressed()
+        }
+
+        requireBinding().fragmentDiscoverMoviesOpenSearchView.setOnClickListener {
+            requireBinding().rootFragmentDiscoverMovies.transitionToEnd()
+        }
+
+        requireBinding().fragmentDiscoverMoviesEditLayout.setEndIconOnClickListener {
+            requireBinding().rootFragmentDiscoverMovies.transitionToStart()
         }
     }
 

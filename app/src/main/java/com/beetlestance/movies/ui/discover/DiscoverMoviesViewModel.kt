@@ -23,6 +23,8 @@ class DiscoverMoviesViewModel @Inject constructor(
     private val _pageConfig: MutableLiveData<MoviesConfig> = MutableLiveData()
     val pageConfig: LiveData<MoviesConfig> = _pageConfig
 
+    val searchQuery: MutableLiveData<String> = MutableLiveData()
+
     val movies: Flow<PagingData<Movies>>
         get() = observeMovies.observe()
 
@@ -32,6 +34,10 @@ class DiscoverMoviesViewModel @Inject constructor(
                 _pageConfig.postValue(config)
             }
         }
+        observeMovies(ObserveMovies.Params(PAGING_CONFIG))
+    }
+
+    fun onImeActionTriggered() {
         observeMovies(ObserveMovies.Params(PAGING_CONFIG))
     }
 
