@@ -11,9 +11,6 @@ class MainActivity : DaggerAppCompatActivity(R.layout.activity_main) {
 
     private var binding: ActivityMainBinding? = null
 
-    @Inject
-    lateinit var viewModelFactory: ViewModelFactory
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
