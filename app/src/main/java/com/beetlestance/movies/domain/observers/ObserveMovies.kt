@@ -19,11 +19,7 @@ class ObserveMovies @Inject constructor(
     override fun createObservable(params: Params): Flow<PagingData<Movies>> {
         return Pager(
             config = params.pagingConfig,
-            remoteMediator = MovieRemoteMediator { itemId ->
-                (itemId == INIT_DATA).also { shouldFetch ->
-                    if (shouldFetch) moviesRepository.fetchMovies()
-                }
-            },
+            remoteMediator = MovieRemoteMediator { itemId -> itemId == INIT_DATA },
             pagingSourceFactory = { moviesRepository.moviesPageSource(params.query) }
         ).flow
     }
